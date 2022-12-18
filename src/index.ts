@@ -1,24 +1,13 @@
-import { formatDay } from './util';
+import "module-alias/register"
+import { formatDay } from '@utils';
+import { readFileSync } from "fs"
 
-const day = Number(process.env.npm_config_day ?? 0);
-const part = Number(process.env.npm_config_part ?? 0);
+const day = process.env.npm_config_day ? parseInt(process.env.npm_config_day) : (new Date()).getDate()
+const part = process.env.npm_config_part ? parseInt(process.env.npm_config_part) : 1
 
-const outputSolution = (part: number) =>
-  console.log(
-    `Day ${day} | Part ${part} - Solution: ${
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      require(`./day${formatDay(day)}/part${part}.js`).default
-    }`
-  );
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const run = require(`./day${formatDay(day)}.js`).default as (input: string, part: number) => string
+const input = readFileSync(`@input/day${formatDay(day)}`).toString()
 
-const validate = (type: 'day' | 'part', num: number, max: number) => {
-  if (num < 1 || num > max + 1)
-    throw new Error(
-      `The ${type} must be number between 1 and ${max}, you entered ${num}`
-    );
-};
+console.log(`Day ${day} | Part ${part} - Solution: ${run(input, part)}`);
 
-validate('day', day, 25);
-validate('part', part, 2);
-
-outputSolution(part);

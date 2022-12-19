@@ -12,15 +12,17 @@ const run = require(`./day${formatDay(day)}`).default as (
   part: number
 ) => string;
 const test = require(`./day${formatDay(day)}/test`);
-const answer = test.answers[part - 1];
+let answer = test.answers[part - 1].toString() as string;
+answer = answer.trim()
 
 // console.log(`Day ${day} | Part ${part} - Solution: ${run(testInput.input, part)}`);
 console.log("Starting test...");
+
 console.time("Completed calculation in ");
-const res = run(test.input, part);
+const res = run(test.input.trim(), part);
 console.timeEnd("Completed calculation in ");
 
-if (res === answer)
+if (res.trim() === answer)
   console.log(`
 Test Passed!!
 Answer: ${res}`);

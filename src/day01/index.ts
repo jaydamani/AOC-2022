@@ -1,5 +1,5 @@
 export default function (str: string, part: number) {
-  let max = part == 1 ? 1 : 3;
+  let max = part === 1 ? 1 : 3;
   return str
     .split("\n\n")
     .map((a) => a.split("\n").reduce((a, b) => +a + +b, 0))

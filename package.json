@@ -4,11 +4,13 @@
   "description": "AOC solutions by jay damani",
   "main": "dist/index.js",
   "scripts": {
-    "start": "rimraf dist && tsc && node ."
+    "start": "node .",
+    "watch": "tsc -w",
+    "build": "rimraf dist && tsc",
+    "test": "node dist/test.js"
   },
   "_moduleAliases": {
-    "@utils": "dist/util",
-    "@input": "input"
+    "@utils": "dist/util"
   },
   "author": "jay damani",
   "license": "ISC",

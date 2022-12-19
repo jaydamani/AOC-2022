@@ -16,14 +16,14 @@ const answer = test.answers[part - 1]
 
 // console.log(`Day ${day} | Part ${part} - Solution: ${run(testInput.input, part)}`);
 console.log('Starting test...')
+console.time('Completed calculation in ')
 const res = run(test.input, part)
+console.timeEnd('Completed calculation in ')
 
 if(res === answer) console.log(`
 Test Passed!!
-Answer: ${res}
-`)
+Answer: ${res}`)
 else console.error(`
 Test Failed!!
 Expected Answer: ${answer}
-Calculated Answer: ${res}
-`)
+Calculated Answer: ${res}`)

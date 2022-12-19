@@ -13,7 +13,7 @@ const run = require(`./day${formatDay(day)}`).default as (
 ) => string;
 const test = require(`./day${formatDay(day)}/test`);
 let answer = test.answers[part - 1].toString() as string;
-answer = answer.trim()
+answer = answer.trim();
 
 // console.log(`Day ${day} | Part ${part} - Solution: ${run(testInput.input, part)}`);
 console.log("Starting test...");

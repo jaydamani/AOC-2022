@@ -12,13 +12,14 @@ const run = require(`./day${formatDay(day)}`).default as (
   input: string,
   part: number
 ) => string;
-const input = readFileSync(`./input/day${formatDay(day)}.txt`).toString().trim();
+const input = readFileSync(`./input/day${formatDay(day)}.txt`)
+  .toString()
+  .trim();
 
 console.log("Starting calculation...");
 
 console.time("Completed calculation in ");
 const res = run(input, part);
 console.timeEnd("Completed calculation in ");
-
 
 console.log(`Solution: ${res}`);

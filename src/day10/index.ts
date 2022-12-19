@@ -1,4 +1,4 @@
-import { Base, runbase } from '@utils'
+import { Base, runbase } from "@utils";
 class Day10 extends Base<string[]> {
   _cycle = 0;
   X = 1;
@@ -11,8 +11,7 @@ class Day10 extends Base<string[]> {
     if (x === 0) this.result += "\n";
     this.draw(x);
     this._cycle++;
-    if(this.signals.includes(this._cycle)) 
-      this.total += this._cycle * this.X;
+    if (this.signals.includes(this._cycle)) this.total += this._cycle * this.X;
   }
   draw(x: number) {
     if (Math.abs(this.X - x) < 2) this.result += "#";
@@ -25,13 +24,12 @@ class Day10 extends Base<string[]> {
       this.cycle();
       this.X += +op.replace("addx ", "");
     }
-    if(part === 1)
-      return this.total.toString()
-    else return this.result
+    if (part === 1) return this.total.toString();
+    else return this.result;
   }
 }
 
-export default runbase(Day10)
+export default runbase(Day10);
 /*
 ##..##..##..##..##..##..##..##..##..##..
 ###...###...###...###...###...###...###.

@@ -10,16 +10,16 @@ console.log("Loading files...");
 const run = require(`./day${formatDay(day)}`).default as (
   input: string,
   part: number
-) => string;
+) => string | number;
 const test = require(`./day${formatDay(day)}/test`);
-let answer = test.answers[part - 1].toString() as string;
-answer = answer.trim();
+let answer = test.answers[part - 1] as string | number;
+answer = answer?.toString().trim();
 
 // console.log(`Day ${day} | Part ${part} - Solution: ${run(testInput.input, part)}`);
 console.log("Starting test...");
 
 console.time("Completed calculation in ");
-const res = run(test.input.trim(), part);
+const res = run(test.input.trim(), part).toString();
 console.timeEnd("Completed calculation in ");
 
 if (res.trim() === answer)

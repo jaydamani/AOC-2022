@@ -7,6 +7,7 @@
     "start": "node .",
     "watch": "tsc -w",
     "build": "rimraf dist && tsc",
+    "setup": "node scripts/setup.mjs",
     "test": "node dist/test.js"
   },
   "_moduleAliases": {
@@ -27,6 +28,7 @@
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.1.4",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1",
     "rimraf": "^3.0.2"
   }

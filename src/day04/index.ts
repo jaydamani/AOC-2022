@@ -1,5 +1,5 @@
 export default function (input: string, part: number) {
-  return input
+  return input.trim()
     .split("\n")
     .map((a) => a.split(",").map((e) => e.split("-")))
     .filter(filters[part - 1])

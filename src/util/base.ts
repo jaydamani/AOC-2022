@@ -6,7 +6,7 @@ export abstract class Base<T> {
 
   abstract run(part: number): string;
   parseInput(input: string): T {
-    return input.split("\n") as unknown as T;
+    return input.trim().split("\n") as unknown as T;
   }
 }
 

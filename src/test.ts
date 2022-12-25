@@ -13,16 +13,15 @@ const run = require(`./day${formatDay(day)}`).default as (
 ) => string | number;
 const test = require(`./day${formatDay(day)}/test`);
 let answer = test.answers[part - 1] as string | number;
-answer = answer?.toString().trim();
 
 // console.log(`Day ${day} | Part ${part} - Solution: ${run(testInput.input, part)}`);
 console.log("Starting test...");
 
 console.time("Completed calculation in ");
-const res = run(test.input.trim(), part).toString();
+const res = run(test.input, part).toString();
 console.timeEnd("Completed calculation in ");
 
-if (res.trim() === answer)
+if (res == answer)
   console.log(`
 Test Passed!!
 Answer: ${res}`);

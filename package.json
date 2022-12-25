@@ -6,9 +6,11 @@
   "scripts": {
     "start": "node .",
     "watch": "tsc -w",
-    "build": "rimraf dist && tsc",
+    "build": "tsc",
+    "prebuild": "rimraf dist",
     "setup": "node scripts/setup.mjs",
-    "test": "node dist/test.js"
+    "test": "node dist/test.js",
+    "pretest": "npm run build"
   },
   "_moduleAliases": {
     "@utils": "dist/util"

@@ -10,11 +10,7 @@
       "outFiles": [
         "${workspaceFolder}/dist/**/*.js"
       ],
-      "sourceMaps": true,
-      "env": {
-        "day": "10",
-        "part":"1"
-      }
+      "sourceMaps": true
     },
     {
       "type": "pwa-node",

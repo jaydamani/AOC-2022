@@ -18,11 +18,10 @@
   "author": "jay damani",
   "license": "ISC",
   "dependencies": {
-    "module-alias": "^2.2.2",
-    "typescript": "^4.1.2"
+    "module-alias": "^2.2.2"
   },
   "devDependencies": {
-    "@types/node": "^14.18.35",
+    "@types/node": "^18.11.17",
     "@typescript-eslint/eslint-plugin": "^4.9.0",
     "@typescript-eslint/parser": "^4.9.0",
     "eslint": "^7.14.0",
@@ -32,6 +31,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "typescript": "^4.9.4"
   }
 }

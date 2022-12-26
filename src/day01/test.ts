@@ -1,4 +1,4 @@
-export const answers = [24000,45000];
+export const answers = [24000, 45000];
 
 export const input = `1000
 2000

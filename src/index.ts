@@ -13,10 +13,10 @@ getDayAndPart().then(([day, part]: [string, number]) => {
 
   console.log("Starting calculation...");
 
-  const start = Date.now()
+  const start = Date.now();
   const res = run(input, part);
-  const time = Date.now() - start
+  const time = Date.now() - start;
 
   console.log(`Solution: ${res}`);
-  console.log(`Calculated in ${time} ms`)
-})
+  console.log(`Calculated in ${time} ms`);
+});

@@ -14,17 +14,17 @@ getDayAndPart().then(([day, part]: [string, number]) => {
 
   console.log("Starting test...");
 
-  const start = Date.now()
+  const start = Date.now();
   const res = run(test.input, part);
-  const time = Date.now() - start
+  const time = Date.now() - start;
 
   if (res == answer) {
-    console.log("Test Passed!!")
+    console.log("Test Passed!!");
     console.log(`Answer: ${res}`);
-    console.log(`Calculated in ${time} ms`)
+    console.log(`Calculated in ${time} ms`);
   } else {
-    console.error("Test Failed!!")
-    console.error(`Expected Answer: ${answer}`)
+    console.error("Test Failed!!");
+    console.error(`Expected Answer: ${answer}`);
     console.error(`Calculated Answer: ${res}`);
   }
 });

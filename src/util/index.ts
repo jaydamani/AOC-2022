@@ -7,7 +7,11 @@ export async function getDayAndPart(): Promise<[string, number]> {
     input: process.stdin,
     output: process.stdout,
   });
-  if (process.env.DAY) return [process.env.DAY.padStart(2, '0'), parseInt(process.env.PART ?? "1")];
+  if (process.env.DAY)
+    return [
+      process.env.DAY.padStart(2, "0"),
+      parseInt(process.env.PART ?? "1"),
+    ];
   const day = await prompt({
     rl,
     name: "day",
@@ -30,8 +34,8 @@ export async function getDayAndPart(): Promise<[string, number]> {
     ],
   });
 
-  rl.close()
-  return [day.padStart(2, '0'), parseInt(part)];
+  rl.close();
+  return [day.padStart(2, "0"), parseInt(part)];
 }
 
 type validator = (input: string) => string | true;

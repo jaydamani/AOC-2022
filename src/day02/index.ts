@@ -4,9 +4,7 @@ const index = { A: 1, B: 2, C: 3, X: 1, Y: 2, Z: 3 };
 
 export default function run(str: string, part: number) {
   let arr = str.trim().split("\n");
-  return arr
-    .map(funcs[part - 1])
-    .reduce((a, b) => a + b, 0)
+  return arr.map(funcs[part - 1]).reduce((a, b) => a + b, 0);
 }
 const funcs = [
   function calPoints(col: string) {

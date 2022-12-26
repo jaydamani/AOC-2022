@@ -1,23 +1,22 @@
-import "module-alias/register";
-import { formatDay } from "@utils";
+import "module-alias/register.js";
 import { readFileSync } from "fs";
+import { getDayAndPart } from "@utils";
 
-const day = process.env.day ? parseInt(process.env.day) : new Date().getDate();
-const part = process.env.part ? parseInt(process.env.part) : 1;
+getDayAndPart().then(([day, part]: [string, number]) => {
+  console.log(`Finding solution for day ${day} part ${part}`);
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const run = require(`./day${day}`).default as (
+    input: string,
+    part: number
+  ) => string;
+  const input = readFileSync(`./input/day${day}.txt`).toString();
 
-console.log(`Finding solution for day ${day} part ${part}`);
-console.log("Loading files...");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const run = require(`./day${formatDay(day)}`).default as (
-  input: string,
-  part: number
-) => string;
-const input = readFileSync(`./input/day${formatDay(day)}.txt`).toString();
+  console.log("Starting calculation...");
 
-console.log("Starting calculation...");
+  const start = Date.now()
+  const res = run(input, part);
+  const time = Date.now() - start
 
-console.time("Completed calculation in ");
-const res = run(input, part);
-console.timeEnd("Completed calculation in ");
-
-console.log(`Solution: ${res}`);
+  console.log(`Solution: ${res}`);
+  console.log(`Calculated in ${time} ms`)
+})

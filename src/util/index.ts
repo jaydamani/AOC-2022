@@ -1,21 +1,52 @@
-import { mkdirSync, writeFileSync } from "fs";
+import { createInterface, Interface } from "node:readline/promises";
 
 export * from "./base";
 
-export const formatDay = (day: number | string) =>
-  day.toString().padStart(2, "0");
+export async function getDayAndPart(): Promise<[string, number]> {
+  const rl = createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+  if (process.env.DAY) return [process.env.DAY.padStart(2, '0'), parseInt(process.env.PART ?? "1")];
+  const day = await prompt({
+    rl,
+    name: "day",
+    query: "Enter day to solve:",
+    validators: [
+      (input) => Number.isInteger(+input) || "Enter an integer",
+      (input) => +input >= 1 || "Enter a number greater than 1",
+      (input) => +input <= 25 || "Enter a number less than 25",
+    ],
+  });
 
-const genTemplate = (part: 1 | 2) => `import { parseInput } from '../util';
+  const part = await prompt({
+    rl,
+    name: "part",
+    query: "Enter the part number:",
+    validators: [
+      (input) => Number.isInteger(+input) || "Enter an integer",
+      (input) => +input >= 1 || "Enter a number greater than 1",
+      (input) => +input <= 3 || "Enter a number less than 3",
+    ],
+  });
 
-const input = parseInput();
+  rl.close()
+  return [day.padStart(2, '0'), parseInt(part)];
+}
 
-// TODO: Complete Part ${part}
-`;
+type validator = (input: string) => string | true;
+interface promptOptions {
+  name: string;
+  query: string;
+  validators?: validator[];
+  rl: Interface;
+}
 
-export const setupDay = (day: number) => {
-  const dir = `./src/day${formatDay(day)}`;
-  mkdirSync(dir);
-  writeFileSync(`${dir}/input.txt`, "");
-  writeFileSync(`${dir}/part1.ts`, genTemplate(1));
-  writeFileSync(`${dir}/part2.ts`, genTemplate(2));
-};
+async function prompt(opts: promptOptions): Promise<string> {
+  const input = await opts.rl.question(opts.query + "\n ");
+  for (const validator of opts.validators ?? []) {
+    const query = validator(input);
+    if (query !== true) return await prompt({ ...opts, query });
+  }
+  return input;
+}

@@ -1,32 +1,30 @@
-import "module-alias/register";
-import { formatDay } from "@utils";
+import "module-alias/register.js";
+import { getDayAndPart } from "@utils";
 
-const day = process.env.day ? parseInt(process.env.day) : new Date().getDate();
-const part = process.env.part ? parseInt(process.env.part) : 1;
+getDayAndPart().then(([day, part]: [string, number]) => {
+  console.log(`Starting test for day ${day} part ${part}`);
 
-console.log(`Starting test for day ${day} part ${part}`);
-console.log("Loading files...");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const run = require(`./day${formatDay(day)}`).default as (
-  input: string,
-  part: number
-) => string | number;
-const test = require(`./day${formatDay(day)}/test`);
-let answer = test.answers[part - 1] as string | number;
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const run = require(`./day${day}`).default as (
+    input: string,
+    part: number
+  ) => string | number;
+  const test = require(`./day${day}/test`);
+  let answer = test.answers[part - 1] as string | number;
 
-// console.log(`Day ${day} | Part ${part} - Solution: ${run(testInput.input, part)}`);
-console.log("Starting test...");
+  console.log("Starting test...");
 
-console.time("Completed calculation in ");
-const res = run(test.input, part).toString();
-console.timeEnd("Completed calculation in ");
+  const start = Date.now()
+  const res = run(test.input, part);
+  const time = Date.now() - start
 
-if (res == answer)
-  console.log(`
-Test Passed!!
-Answer: ${res}`);
-else
-  console.error(`
-Test Failed!!
-Expected Answer: ${answer}
-Calculated Answer: ${res}`);
+  if (res == answer) {
+    console.log("Test Passed!!")
+    console.log(`Answer: ${res}`);
+    console.log(`Calculated in ${time} ms`)
+  } else {
+    console.error("Test Failed!!")
+    console.error(`Expected Answer: ${answer}`)
+    console.error(`Calculated Answer: ${res}`);
+  }
+});

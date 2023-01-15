@@ -1,16 +1,13 @@
 export abstract class Base<T> {
-	input: T;
-	constructor(input: string) {
+	protected input: T;
+	public constructor(input: string) {
 		this.input = this.parseInput(input);
 	}
 
-	abstract run(part: number): string;
-	parseInput(input: string): T {
-		return input.trim().split("\n") as unknown as T;
+	public abstract run(part: number): string | number;
+	protected parseInput(input: string): T {
+		return input.trim().split('\n') as unknown as T;
 	}
 }
 
-export const runbase =
-	(base: new (input: string) => Base<unknown>) =>
-	(input: string, part: number) =>
-		new base(input).run(part);
+export const runbase = (base: new (input: string) => Base<unknown>) => (input: string, part: number) => new base(input).run(part);

@@ -1,4 +1,4 @@
-export const answers = ["CMZ", "MCD"];
+export const answers = ['CMZ', 'MCD'];
 export const input = `    [D]    
 [N] [C]    
 [Z] [M] [P]
